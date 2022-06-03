@@ -1,17 +1,15 @@
 package com.jaredgood.sfgdi.controllers;
 
-import com.jaredgood.sfgdi.services.GreetingServiceImplementation;
+import com.jaredgood.sfgdi.services.ConstructorGreetingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ConstructorBasedControllerTest {
     ConstructorBasedController controller;
 
     @BeforeEach
     void setUp(){
-        controller = new ConstructorBasedController(new GreetingServiceImplementation());
+        controller = new ConstructorBasedController(new ConstructorGreetingService());
     }
 
     @Test
