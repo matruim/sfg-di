@@ -8,8 +8,8 @@ import com.jaredgood.sfgdi.repositories.EnglishGreetingRepositoryImpl;
 import com.jaredgood.sfgdi.services.*;
 import org.springframework.context.annotation.*;
 
-@Configuration
 @ImportResource("classpath:sfgdi-config.xml")
+@Configuration
 public class GreetingServiceConfig {
 
 //    @Bean
