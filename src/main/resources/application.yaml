@@ -1,8 +1,19 @@
 spring:
   profiles:
-    active: EN,dog,qa
+    active:
+      - dog
+      - EN
+      - prod
 
 guru:
   username: superuser
   password: dbpassword
   jdbcurl: someUrlforDB
+
+---
+spring:
+  profiles: prod
+guru:
+  username: ProdUserName
+  password: ProdPassword
+  jdbcurl: ProdURl
