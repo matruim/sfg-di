@@ -1,15 +1,17 @@
 package com.jaredgood.sfgdi.config;
 
-import com.jaredgood.pets.DogPetService;
 import com.jaredgood.pets.PetService;
 import com.jaredgood.pets.PetServiceFactory;
+import com.jaredgood.sfgdi.datasource.FakeDataSource;
 import com.jaredgood.sfgdi.repositories.EnglishGreetingRepository;
 import com.jaredgood.sfgdi.repositories.EnglishGreetingRepositoryImpl;
 import com.jaredgood.sfgdi.services.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 
-@ImportResource("classpath:sfgdi-config.xml")
 @Configuration
+@PropertySource("classpath:datasource.properties")
+@ImportResource("classpath:sfgdi-config.xml")
 public class GreetingServiceConfig {
 
 //    @Bean
@@ -64,5 +66,15 @@ public class GreetingServiceConfig {
     @Bean
     PetService catPetService(PetServiceFactory petServiceFactory){
         return petServiceFactory.getPetService("cat");
+    }
+
+
+    @Bean
+    FakeDataSource fakeDataSource(@Value("${guru.username}") String username, @Value("${guru.password}") String password, @Value("${guru.jdbcurl}") String jdbcurl){
+        FakeDataSource fakeDataSource = new FakeDataSource();
+        fakeDataSource.setUsername(username);
+        fakeDataSource.setPassword(password);
+        fakeDataSource.setJdbcurl(jdbcurl);
+        return fakeDataSource;
     }
 }
