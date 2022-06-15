@@ -3,7 +3,7 @@ spring:
     active:
       - dog
       - EN
-      - prod
+      - dev
 
 guru:
   username: superuser

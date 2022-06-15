@@ -7,10 +7,12 @@ import com.jaredgood.sfgdi.repositories.EnglishGreetingRepository;
 import com.jaredgood.sfgdi.repositories.EnglishGreetingRepositoryImpl;
 import com.jaredgood.sfgdi.services.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.*;
 
 @Configuration
 @ImportResource("classpath:sfgdi-config.xml")
+@EnableConfigurationProperties(ConstuctorConfig.class)
 public class GreetingServiceConfig {
 
 //    @Bean
@@ -69,11 +71,11 @@ public class GreetingServiceConfig {
 
 
     @Bean
-    FakeDataSource fakeDataSource(@Value("${guru.username}") String username, @Value("${guru.password}") String password, @Value("${guru.jdbcurl}") String jdbcurl){
+    FakeDataSource fakeDataSource(ConstuctorConfig constuctorConfig){
         FakeDataSource fakeDataSource = new FakeDataSource();
-        fakeDataSource.setUsername(username);
-        fakeDataSource.setPassword(password);
-        fakeDataSource.setJdbcurl(jdbcurl);
+        fakeDataSource.setUsername(constuctorConfig.getUsername());
+        fakeDataSource.setPassword(constuctorConfig.getPassword());
+        fakeDataSource.setJdbcurl(constuctorConfig.getJdbcurl());
         return fakeDataSource;
     }
 }

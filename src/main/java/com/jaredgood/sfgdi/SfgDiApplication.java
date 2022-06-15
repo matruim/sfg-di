@@ -1,5 +1,7 @@
 package com.jaredgood.sfgdi;
 
+import com.jaredgood.sfgdi.config.ConstuctorConfig;
+import com.jaredgood.sfgdi.config.SfgConfiguration;
 import com.jaredgood.sfgdi.controllers.*;
 import com.jaredgood.sfgdi.datasource.FakeDataSource;
 import com.jaredgood.sfgdi.services.PrototypeBean;
@@ -55,6 +57,18 @@ public class SfgDiApplication {
 		System.out.println(fakeDataSource.getUsername());
 		System.out.println(fakeDataSource.getPassword());
 		System.out.println(fakeDataSource.getJdbcurl());
+
+		System.out.println("---- Config Props Bean ---------");
+		SfgConfiguration sfgConfiguration = ctx.getBean(SfgConfiguration.class);
+		System.out.println(sfgConfiguration.getUsername());
+		System.out.println(sfgConfiguration.getPassword());
+		System.out.println(sfgConfiguration.getJdbcurl());
+
+		System.out.println("---- Constructor Binding ---------");
+		ConstuctorConfig constuctorConfig = ctx.getBean(ConstuctorConfig.class);
+		System.out.println(constuctorConfig.getUsername());
+		System.out.println(constuctorConfig.getPassword());
+		System.out.println(constuctorConfig.getJdbcurl());
 	}
 
 }
